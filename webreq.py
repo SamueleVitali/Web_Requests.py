@@ -12,7 +12,7 @@ print("""\
                                             
               ┌─┐┬  ┌─┐┬ ┬┌─┐
               ├─┤│  ├─┘├─┤├─┤
-              ┴ ┴┴─┘┴  ┴ ┴┴ ┴ (1.2)
+              ┴ ┴┴─┘┴  ┴ ┴┴ ┴ (1.3)
                
                
                
@@ -36,6 +36,7 @@ print("""\
     
 1) GET
 2) POST
+3) HEAD
     """)
 
 choice = int(input("Enter your choice: "))
@@ -85,10 +86,15 @@ if choice == 2:
     choice2 = int(input("\nEnter your choice: "))
     if choice2 == 1:
         r = requests.post(input_url)
-        print(r.text)
+        
     elif choice2 == 2:
         cookiename = input("\nEnter your cookie name: ")
         cookievalue = input("\nEnter your cookie value: ")
         cookies = {cookiename: cookievalue}
         r = requests.post(input_url, cookies=cookies)
-        print("\n"+r.text)
+    
+    print("\nRESPONSE:\n\n"+r.text)
+
+if choice==3:
+    x = requests.head(input_url)
+    print("\nRESPONSE:\n\n"+x.headers)
